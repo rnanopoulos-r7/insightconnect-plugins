@@ -27,14 +27,16 @@ class ConnectionSchema(komand.Input):
       "default": "us",
       "enum": [
         "eu",
-        "us"
+        "us",
+        "au",
+        "jp"
       ],
       "order": 2
     }
   },
   "required": [
-    "region",
-    "api_key"
+    "api_key",
+    "region"
   ],
   "definitions": {
     "credential_secret_key": {

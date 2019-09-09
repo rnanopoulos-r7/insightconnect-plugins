@@ -1,9 +1,9 @@
 plugin_spec_version: v2
 name: rapid7_insightops
 title: Rapid7 InsightOps
-vendor: rapid7
+vendor: jadoncm
 description: Log Management and Monitoring Solution
-version: 1.0.1
+version: 1.0.4
 status: ["supported"]
 tags:
 - InsightOps
@@ -140,6 +140,8 @@ connection:
     enum:
     - eu
     - us
+    - au
+    - jp
 actions:
   query_logs:
     title: Query Logs
@@ -150,6 +152,41 @@ actions:
         description: Logs
         type: '[]logs'
         required: true
+  download_logs:
+    title: Download Logs
+    description: Download logs given a query and timeframe
+    input:
+      query:
+        title: Query
+        description: Advanced leql query 
+        type: string
+        required: false
+      logs:
+        title: log IDs
+        description: Array of logs to search
+        type: '[]string'
+        required: true
+      from_millis:
+        title: From
+        description: Timeframe start in epoch millis
+        type: string
+        required: true
+      to_millis:
+        title: To
+        description: Timeframe end in epoch millis
+        type: string
+        required: true
+      limit:
+        title: Limit
+        description: Max number of files to download
+        type: string
+        required: false
+    output:
+      downloaded_logs:
+        title: Downloaded Logs
+        description: Logs downloaded that match the supplied query
+        type: '[]object'
+        required: false
   create_logset_container:
     title: Create Logset Container
     description: Creates a container within the specified logset for InsightOps service
