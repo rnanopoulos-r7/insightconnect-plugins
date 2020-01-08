@@ -198,7 +198,7 @@ This action is used to stop the execution of a file on a machine and delete it.
 |----|----|-------|--------|-----------|----|
 |machine_id|string|None|True|Machine ID|None|
 |comment|string|None|True|Comment to associate with the stop and quarantine action|None|
-|sha1|string|None|True|Sha1 of the file to stop and quarantine on the machine|None|
+|sha1|string|None|True|SHA1 of the file to stop and quarantine on the machine|None|
 
 ##### Output
 
@@ -625,7 +625,7 @@ This plugin does not contain any troubleshooting information.
 
 # Version History
 
-* 2.0.0 - Client_id input is encrypted, microsoft errors returned when exceptions come
+* 2.0.0 - Client_id input encrypted | Errors return Microsoft errors | Updated variable names with IOC or SHA1 to pass validator rules
 * 1.5.1 - New spec and help.md format for the Hub
 * 1.5.0 - Fix issue where triggers always returned a blank payload
 * 1.4.0 - New trigger Get Alerts | New action Get Machine Action

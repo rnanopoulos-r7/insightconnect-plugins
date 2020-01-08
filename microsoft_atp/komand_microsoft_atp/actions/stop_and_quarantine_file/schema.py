@@ -37,8 +37,8 @@ class StopAndQuarantineFileInput(komand.Input):
     },
     "sha1": {
       "type": "string",
-      "title": "Sha1",
-      "description": "Sha1 of the file to stop and quarantine on the machine",
+      "title": "SHA1",
+      "description": "SHA1 of the file to stop and quarantine on the machine",
       "order": 3
     }
   },
@@ -102,7 +102,7 @@ class StopAndQuarantineFileOutput(komand.Output):
         "creationDateTimeUtc": {
           "type": "string",
           "title": "Creation Date Time UTC",
-          "description": "Creation date time utc",
+          "description": "Creation date time UTC",
           "order": 2
         },
         "id": {

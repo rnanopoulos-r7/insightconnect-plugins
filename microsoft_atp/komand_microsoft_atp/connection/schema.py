@@ -25,7 +25,7 @@ class ConnectionSchema(komand.Input):
       "order": 1
     },
     "client_id": {
-      "type": "string",
+      "$ref": "#/definitions/credential_secret_key",
       "title": "Client ID",
       "description": "Client ID obtained from Windows Defender Security Center API settings",
       "order": 2
@@ -63,7 +63,27 @@ class ConnectionSchema(komand.Input):
     "client_id",
     "client_secret",
     "host"
-  ]
+  ],
+  "definitions": {
+    "credential_secret_key": {
+      "id": "credential_secret_key",
+      "type": "object",
+      "title": "Credential: Secret Key",
+      "description": "A shared secret key",
+      "properties": {
+        "secretKey": {
+          "type": "string",
+          "title": "Secret Key",
+          "displayType": "password",
+          "description": "The shared secret key",
+          "format": "password"
+        }
+      },
+      "required": [
+        "secretKey"
+      ]
+    }
+  }
 }
     """)
 

@@ -21,7 +21,6 @@ hub_tags:
   use_cases: [threat_detection_and_response, user_management, alerting_and_notifications, devops]
   keywords: [windows, atp, microsoft, defender]
   features: []
-
 types:
   alert:
     Category:
@@ -65,7 +64,7 @@ types:
     ThreatFamily:
       type: string
     IocUniqueId:
-      title: IoC Unique ID
+      title: IOC Unique ID
       definition: Indicator of Compromise unique ID
       type: string
     LinkToWDATP:
@@ -89,7 +88,7 @@ types:
       title: SHA-1
       type: string
     CreatorIocName:
-      title: Creator IoC Name
+      title: Creator IOC Name
       type: string
     Url:
       title: URL
@@ -115,7 +114,7 @@ types:
       title: Threat Name
       type: string
     IocValue:
-      title: IoC Value
+      title: IOC Value
       definition: Indicator of Compromise value
       type: string
     WasExecutingWhileDetected:
@@ -129,7 +128,7 @@ types:
     FilePath:
       type: string
     IocName:
-      title: IoC Name
+      title: IOC Name
       definition: Indicator of Compromise name
       type: string
     ComputerDnsName:
@@ -357,7 +356,7 @@ types:
     creationDateTimeUtc:
       title: Creation Date Time UTC
       type: string
-      description: Creation date time utc
+      description: Creation date time UTC
       required: false
     machineId:
       title: Machine ID
@@ -536,8 +535,8 @@ actions:
         required: true
       sha1:
         type: string
-        title: Sha1
-        description: Sha1 of the file to stop and quarantine on the machine
+        title: SHA1
+        description: SHA1 of the file to stop and quarantine on the machine
         required: true
     output:
       stop_and_quarantine_response:
