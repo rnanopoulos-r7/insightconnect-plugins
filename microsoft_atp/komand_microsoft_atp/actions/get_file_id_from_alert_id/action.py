@@ -21,7 +21,8 @@ class GetFileIdFromAlertId(komand.Action):
             files["file_list"] = files.pop("value")
         except KeyError as k:
             self.logger.error("Could not find 'value' key in file information response: " + str(k))
-            raise PluginException(cause='', assisstance='')
+            raise PluginException(cause='404 No Files Found',
+                                  assisstance='Please verify that the alert_id exists')
 
         return {"file_information": komand.helper.clean(files)}
 

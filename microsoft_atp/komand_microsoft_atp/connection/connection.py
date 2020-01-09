@@ -94,9 +94,7 @@ class Connection(komand.Connection):
             matching_alerts = list(filter(lambda a: a.get(key) == value, response.json()))
         except json.JSONDecodeError as e:
             self.logger.error("Alerts returned were in an unexpected format!")
-            raise ConnectionTestException(cause='',
-                                          assistance=''
-                                          )
+            raise ConnectionTestException(cause='404 No Alerts Found', assistance='' )
 
         return komand.helper.clean(matching_alerts)
 
