@@ -4,7 +4,7 @@ products: [insightconnect]
 name: rapid7_insightappsec
 title: Rapid7 InsightAppSec
 description: This plugin allows for the creation, configuration, and starting of scans. The plugin can also retrieve scan results and logging related to the execution of the scan
-version: 1.0.1
+version: 1.1.0
 vendor: rapid7
 status: []
 support: rapid7
@@ -200,6 +200,41 @@ connection:
     required: true
     default: https://us.api.insight.rapid7.com
 actions:
+  create_app:
+    title: Create Application
+    description: Creates new application in InsightAppSec
+    input:
+      app_name:
+        title: Name
+        description: Name of the application
+        type: string
+        required: true
+      app_description:
+        title: Description
+        description: Describe application
+        type: string
+        required: false
+    output:
+      status:
+        title: Status
+        description: Status code
+        type: integer
+        required: false
+      message:
+        title: Message
+        description: Message
+        type: string
+        required: false
+      error_code:
+        title: Error code
+        description: Error code
+        type: string
+        required: false
+      app_id:
+        title: App ID
+        description: Hash value
+        type: string
+        required: false 
   create_scan_config:
     title: Create Scan Config
     description: Create a new scan configuration

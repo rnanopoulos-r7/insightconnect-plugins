@@ -4,10 +4,10 @@ import komand
 from komand_rapid7_insightappsec import connection, actions, triggers
 
 
-Name = 'Rapid7 InsightAppSec'
-Vendor = 'rapid7'
-Version = '1.0.1'
-Description = 'This plugin allows for the creation, configuration, and starting of scans. The plugin can also retrieve scan results and logging related to the execution of the scan'
+Name = "Rapid7 InsightAppSec"
+Vendor = "rapid7"
+Version = "1.1.0"
+Description = "This plugin allows for the creation, configuration, and starting of scans. The plugin can also retrieve scan results and logging related to the execution of the scan"
 
 
 class ICONRapid7Insightappsec(komand.Plugin):
@@ -19,6 +19,8 @@ class ICONRapid7Insightappsec(komand.Plugin):
                 description=Description,
                 connection=connection.Connection()
                 )
+        self.add_action(actions.CreateApp())
+
         self.add_action(actions.CreateScanConfig())
 
         self.add_action(actions.DeleteScan())

@@ -60,3 +60,14 @@ class Scans:
         :return: pre-populated ias/v1/scans/{scan_id}/platform-events/
         """
         return f'{console_url}ias/v1/scans/{scan_id}/platform-events/'
+
+
+class Apps:
+    @staticmethod
+    def create_app(console_url: str):
+        """
+        Create a new App.
+        When using a user API key the associated user will be added to the App
+        When using an org API key no user will be added to the App
+        """
+        return f'{console_url}ias/v1/apps'

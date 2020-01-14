@@ -28,6 +28,37 @@ The connection configuration accepts the following parameters:
 
 ### Actions
 
+#### Create Application
+
+This action creates new application in InsightAppSec.
+
+##### Input
+
+|Name|Type|Default|Required|Description|Enum|
+|----|----|-------|--------|-----------|----|
+|app_description|string|None|False|Describe application|None|
+|app_name|string|None|True|Name of the application|None|
+
+##### Output
+
+|Name|Type|Required|Description|
+|----|----|--------|-----------|
+|app_id|string|False|Hash value|
+|error_code|string|False|Error code|
+|message|string|False|Message|
+|status|integer|False|Status code|
+
+Example output:
+
+```
+{
+  "app_id": "e9526455-f24a-472a-a26c-01a0a914b388",
+  "error_code": "",
+  "message": "",
+  "status": 0
+}
+```
+
 #### Create Scan Config
 
 This action is used to create a new scan configuration.
@@ -498,6 +529,7 @@ This plugin does not contain any troubleshooting information.
 
 # Version History
 
+* 1.1.0 - Added new action Create Application
 * 1.0.1 - New spec and help.md format for the Hub
 * 1.0.0 - Initial plugin
 
@@ -506,4 +538,3 @@ This plugin does not contain any troubleshooting information.
 ## References
 
 * [InsightAppSec API](https://insightappsec.help.rapid7.com/docs/get-started-with-the-insightappsec-api)
-

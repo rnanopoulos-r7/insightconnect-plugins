@@ -1,8 +1,12 @@
 {
-	"spec": "a36f101286a9c78878b95b6d6debc82c",
-	"manifest": "8a59e6ce18d5646e42f4de3e638704e2",
-	"setup": "7035b1300ad222ba2f13290894e707c1",
+	"spec": "fe167728641abda0dbab1c9b1dee837d",
+	"manifest": "b82b80ab5f041359d2bf16e2f50941a9",
+	"setup": "322b8cbc1629759cc0bc95a58ddeed66",
 	"schemas": [
+		{
+			"identifier": "create_app/schema.py",
+			"hash": "1f261d61c4e51b1f58e3c0d0e1e11a27"
+		},
 		{
 			"identifier": "create_scan_config/schema.py",
 			"hash": "5540d17993d1a2c9a53d60a11cb017a3"

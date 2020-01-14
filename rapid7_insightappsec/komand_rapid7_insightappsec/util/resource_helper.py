@@ -55,7 +55,7 @@ class ResourceHelper(object):
 
         if response.status_code in range(200, 299):
             resource = response.text
-            return {'resource': resource, 'status': response.status_code}
+            return {'resource': resource, 'status': response.status_code, 'headers': response.headers}
         else:
             try:
                 error = response.json()["message"]
