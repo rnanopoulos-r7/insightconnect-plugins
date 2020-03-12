@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vulndb
+  labels:
+    type: plugin
+    vendor: rapid7
+spec:
+  containers:
+    - name: rapid7-vulndb
+      image: rapid7/rapid7_vulndb
+      imagePullPolicy: IfNotPresent
+      args:
+        - http
