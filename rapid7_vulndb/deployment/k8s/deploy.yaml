@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vulndb
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+        type: plugin
+        vendor: rapid7
+        app: vulndb
+  template:
+    metadata:
+      name: vulndb
+      labels:
+        type: plugin
+        vendor: rapid7
+        app: vulndb
+    spec:
+      containers:
+        - name: rapid7-vulndb
+          image: rapid7/rapid7_vulndb:2.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 10001
+          args:
+            - http
