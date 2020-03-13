@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: rapid7-vulndb
-          image: rapid7/rapid7_vulndb:2.0.0
+          image: rapid7/rapid7_vulndb:1.1.1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 10001
