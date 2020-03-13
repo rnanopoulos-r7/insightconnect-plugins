@@ -5,6 +5,7 @@ metadata:
   labels:
     type: plugin
     vendor: rapid7
+    name: vulndb
 spec:
   containers:
     - name: rapid7-vulndb
