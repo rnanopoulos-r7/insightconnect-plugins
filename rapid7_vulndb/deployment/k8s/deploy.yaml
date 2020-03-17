@@ -24,9 +24,16 @@ spec:
     spec:
       containers:
         - name: rapid7-vulndb
-          image: rapid7/rapid7_vulndb:1.1.1
+          image: rapid7/rapid7_vulndb:2.0.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 10001
           args:
             - http
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"

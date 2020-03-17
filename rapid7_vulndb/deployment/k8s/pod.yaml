@@ -9,7 +9,7 @@ metadata:
 spec:
   containers:
     - name: rapid7-vulndb
-      image: rapid7/rapid7_vulndb
+      image: rapid7/rapid7_vulndb:2.0.0
       imagePullPolicy: IfNotPresent
       args:
         - http

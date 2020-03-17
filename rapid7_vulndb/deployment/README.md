@@ -154,6 +154,7 @@ Events:            <none>
 
 ```
 
+
 - service injects env vars for each exposed service in the namespace
 
 ```bash
@@ -167,4 +168,13 @@ VULNDB_SERVICE_HOST=10.104.23.51
 VULNDB_PORT_80_TCP=tcp://10.104.23.51:80
 ```
 
-- 
+- service makes the DNS record available for the service, 
+for example for the service `rapid7-rapid7-vulndb-2-0-0` it creates following DNS record
+
+```bash
+kubectl exec -it vulndb-76ccc4877b-6fpqr nslookup 10.108.137.149
+nslookup: can't resolve '(null)': Name does not resolve
+
+Name:      10.108.137.149
+Address 1: 10.108.137.149 rapid7-rapid7-vulndb-2-0-0.default.svc.cluster.local
+```
