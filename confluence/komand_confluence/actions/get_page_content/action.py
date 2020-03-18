@@ -1,5 +1,5 @@
 import komand
-from .schema import GetPageContentInput, GetPageContentOutput
+from .schema import GetPageContentInput, GetPageContentOutput, Input, Output
 # Custom imports below
 from ...util import util
 
@@ -13,15 +13,11 @@ class GetPageContent(komand.Action):
                 output=GetPageContentOutput())
 
     def run(self, params={}):
-        page = params['page']
-        space = params['space']
+        page = params[Input.PAGE]
+        space = params[Input.SPACE]
         p = self.connection.client.getPage(page, space)
         if p:
             p = util.normalize_page(p)
-            return { 'content': p['content'], 'found': True }
+            return {Output.CONTENTS: p['content'], Output.FOUND: True }
 
-        return { 'found': False, 'content': '' }
-
-    def test(self):
-        """Return content"""
-        return { 'found': True, 'content': '' }
+        return {Output.FOUND: False, Output.CONTENTS: ''}

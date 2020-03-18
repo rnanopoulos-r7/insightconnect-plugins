@@ -22,49 +22,58 @@ The connection configuration accepts the following parameters:
 
 |Name|Type|Default|Required|Description|Enum|
 |----|----|-------|--------|-----------|----|
+|credentials|credential_username_password|None|True|Username and password|None|
 |url|string|None|True|Connection URL|None|
-|username|string|None|False|Username|None|
-|password|string|None|False|Password|None|
 
 ## Technical Details
 
 ### Actions
 
-#### Get Page Content
+#### Store Page Contents
 
-This action is used to retrieve content of a Wiki page.
+This action is used to store page contents.
 
 ##### Input
 
 |Name|Type|Default|Required|Description|Enum|
 |----|----|-------|--------|-----------|----|
-|page|string|None|True|Page Name|None|
+|contents|string|None|True|Contents to store|None|
+|page|string|None|True|Page name|None|
 |space|string|None|True|Space|None|
 
 ##### Output
 
 |Name|Type|Required|Description|
 |----|----|--------|-----------|
-|content|string|False|Content|
+|page|page|False|Page stored|
+
+Example output:
+
+```
+```
+
+#### Get Page Contents
+
+This action is used to get page contents.
+
+##### Input
+
+|Name|Type|Default|Required|Description|Enum|
+|----|----|-------|--------|-----------|----|
+|page|string|None|True|Page name|None|
+|space|string|None|True|Space|None|
+
+##### Output
+
+|Name|Type|Required|Description|
+|----|----|--------|-----------|
+|contents|string|False|Contents|
 |found|boolean|False|True if found|
 
-#### Store Page Content
+Example output:
 
-This action is used store a page of user provided content to the Wiki.
-
-##### Input
-
-|Name|Type|Default|Required|Description|Enum|
-|----|----|-------|--------|-----------|----|
-|content|string|None|True|Content To Store|None|
-|page|string|None|True|Page Name|None|
-|space|string|None|True|Space|None|
-
-##### Output
-
-|Name|Type|Required|Description|
-|----|----|--------|-----------|
-|page|page|False|Page Stored|
+```
+```
 
 #### Get Page
 
@@ -74,7 +83,7 @@ This action is used to retrieve a Wiki page.
 
 |Name|Type|Default|Required|Description|Enum|
 |----|----|-------|--------|-----------|----|
-|page|string|None|True|Page Name|None|
+|page|string|None|True|Page name|None|
 |space|string|None|True|Space|None|
 
 ##### Output

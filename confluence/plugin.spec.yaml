@@ -23,64 +23,79 @@ hub_tags:
 types:
   page:
     title:
+      title: Page Title
       type: string
-      description: Page Title
+      description: Page title
       required: false
     space:
+      title: Space
       type: string
       description: Space
       required: false
     modifier:
+      title: Modifier User
       type: string
-      description: Modifier User
+      description: Modifier user
       required: false
     created:
+      title: Created Date
       type: date
-      description: Created Date
+      description: Created date
       required: false
     content:
+      title: Page Contents
       type: string
-      description: Page Content
+      description: Page contents
       required: false
     url:
+      title: URL
       type: string
       description: URL
       required: false
     permissions:
+      title: Permissions
       type: string
       description: Permissions
       required: false
     creator:
+      title: Creator
       type: string
-      description: Creator User
+      description: Creator user
       required: false
     parentId:
+      title: Parent Page ID
       type: string
-      description: Parent Page ID
+      description: Parent page ID
       required: false
     version:
+      title: Version
       type: string
-      description: Page Version
+      description: Page version
       required: false
     homePage:
+      title: Home Page
       type: boolean
-      description: Home Page
+      description: Home page
       required: false
     id:
+      title: Page ID
       type: string
       description: Page ID
       required: false
     current:
+      title: Current
       type: boolean
       description: True if current version
       required: false
     contentStatus:
+      title: Content Status
       type: string
-      description: Content Status
+      description: Content status
       required: false
     modified:
+      title: Modified Date
       type: date
-      description: Modified Date
+      description: Modified date
       required: false
 connection:
   url:
@@ -95,65 +110,77 @@ connection:
     required: true
 actions:
   get_page_content:
-    title: Get Page Content
-    description: Get Page Content
+    title: Get Page Contents
+    description: Get page contents
     input:
       page:
+        title: Page
         type: string
-        description: Page Name
+        description: Page name
         required: true
       space:
+        title: Space
         type: string
         description: Space
         required: true
     output:
-      content:
-        description: Content
+      contents:
+        title: Contents
+        description: Contents
         type: string
         required: false
       found:
+        title: Found
         type: boolean
         description: True if found
         required: false
   store_page_content:
-    title: Store Page Content
-    description: Store Page Content
+    title: Store Page Contents
+    description: Store page contents
     input:
       page:
+        title: Page Name
         type: string
-        description: Page Name
+        description: Page name
         required: true
       space:
+        title: Space
         type: string
         description: Space
         required: true
-      content:
+      contents:
+        title: Contents
         type: string
-        description: Content To Store
+        description: Contents to store
         required: true
     output:
       page:
-        description: Page Stored
+        title: Page
+        description: Page stored
         type: page
         required: false
   get_page:
     title: Get Page
-    description: Get Page
+    description: Get page
     input:
       page:
+        title: Page Name
         type: string
-        description: Page Name
+        description: Page name
         required: true
       space:
+        title: Space
         type: string
         description: Space
         required: true
     output:
       found:
+        title: Found
         type: boolean
         description: True if found
         required: false
       page:
+        title: Page
         description: Page
         type: page
         required: false

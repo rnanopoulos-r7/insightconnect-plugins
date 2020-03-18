@@ -4,7 +4,7 @@ import json
 
 
 class Component:
-    DESCRIPTION = "Get Page"
+    DESCRIPTION = "Get page"
 
 
 class Input:
@@ -25,8 +25,8 @@ class GetPageInput(komand.Input):
   "properties": {
     "page": {
       "type": "string",
-      "title": "Page",
-      "description": "Page Name",
+      "title": "Page Name",
+      "description": "Page name",
       "order": 1
     },
     "space": {
@@ -73,66 +73,66 @@ class GetPageOutput(komand.Output):
       "properties": {
         "content": {
           "type": "string",
-          "title": "Content",
-          "description": "Page Content",
+          "title": "Page Contents",
+          "description": "Page contents",
           "order": 5
         },
         "contentStatus": {
           "type": "string",
-          "title": "ContentStatus",
-          "description": "Content Status",
+          "title": "Content Status",
+          "description": "Content status",
           "order": 14
         },
         "created": {
           "type": "string",
-          "title": "Created",
+          "title": "Created Date",
           "displayType": "date",
-          "description": "Created Date",
+          "description": "Created date",
           "format": "date-time",
           "order": 4
         },
         "creator": {
           "type": "string",
           "title": "Creator",
-          "description": "Creator User",
+          "description": "Creator user",
           "order": 8
         },
         "current": {
           "type": "boolean",
           "title": "Current",
-          "description": "True if current verison",
+          "description": "True if current version",
           "order": 13
         },
         "homePage": {
           "type": "boolean",
-          "title": "HomePage",
-          "description": "Home Page",
+          "title": "Home Page",
+          "description": "Home page",
           "order": 11
         },
         "id": {
           "type": "string",
-          "title": "Id",
+          "title": "Page ID",
           "description": "Page ID",
           "order": 12
         },
         "modified": {
           "type": "string",
-          "title": "Modified",
+          "title": "Modified Date",
           "displayType": "date",
-          "description": "Modified Date",
+          "description": "Modified date",
           "format": "date-time",
           "order": 15
         },
         "modifier": {
           "type": "string",
-          "title": "Modifier",
-          "description": "Modifier User",
+          "title": "Modifier User",
+          "description": "Modifier user",
           "order": 3
         },
         "parentId": {
           "type": "string",
-          "title": "ParentId",
-          "description": "Parent Page ID",
+          "title": "Parent Page ID",
+          "description": "Parent page ID",
           "order": 9
         },
         "permissions": {
@@ -149,20 +149,20 @@ class GetPageOutput(komand.Output):
         },
         "title": {
           "type": "string",
-          "title": "Title",
-          "description": "Page Title",
+          "title": "Page Title",
+          "description": "Page title",
           "order": 1
         },
         "url": {
           "type": "string",
-          "title": "Url",
+          "title": "URL",
           "description": "URL",
           "order": 6
         },
         "version": {
           "type": "string",
           "title": "Version",
-          "description": "Page Version",
+          "description": "Page version",
           "order": 10
         }
       }

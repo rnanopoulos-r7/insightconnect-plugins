@@ -1,5 +1,5 @@
 import komand
-from .schema import GetPageInput, GetPageOutput
+from .schema import GetPageInput, GetPageOutput, Input, Output
 # Custom imports below
 from ...util import util
 
@@ -14,16 +14,11 @@ class GetPage(komand.Action):
 
     def run(self, params={}):
         """Return a page."""
-        page = params['page']
-        space = params['space']
+        page = params[Input.PAGE]
+        space = params[Input.SPACE]
         p = self.connection.client.getPage(page, space)
         if p: 
             p = util.normalize_page(p)
-            return { 'page': p, 'found': True }
+            return {Output.PAGE: p, Output.FOUND: True}
 
-        return { 'page': {}, 'found': False }
-
-    def test(self):
-        """Test action"""
-        return {'found': True, 
-                'page': {'title': 'HelloWorld', 'space': 'DEMO', 'modifier': 'TestUser', 'created': '20161024T20:19:23Z', 'content': '<p>hello</p>', 'url': 'https://komand.atlassian.net/wiki/display/DEMO/HelloWorld', 'permissions': '0', 'creator': 'TestUser', 'parentId': '0', 'version': '1', 'homePage': 'false', 'id': '19726355', 'current': 'true', 'contentStatus': 'current', 'modified': '20161024T20:19:23Z'}}
+        return {Output.PAGE: {}, Output.FOUND: False}

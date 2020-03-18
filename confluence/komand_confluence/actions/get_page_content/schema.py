@@ -4,7 +4,7 @@ import json
 
 
 class Component:
-    DESCRIPTION = "Get Page Content"
+    DESCRIPTION = "Get page contents"
 
 
 class Input:
@@ -13,7 +13,7 @@ class Input:
     
 
 class Output:
-    CONTENT = "content"
+    CONTENTS = "contents"
     FOUND = "found"
     
 
@@ -26,7 +26,7 @@ class GetPageContentInput(komand.Input):
     "page": {
       "type": "string",
       "title": "Page",
-      "description": "Page Name",
+      "description": "Page name",
       "order": 1
     },
     "space": {
@@ -53,10 +53,10 @@ class GetPageContentOutput(komand.Output):
   "type": "object",
   "title": "Variables",
   "properties": {
-    "content": {
+    "contents": {
       "type": "string",
-      "title": "Content",
-      "description": "Content",
+      "title": "Contents",
+      "description": "Contents",
       "order": 1
     },
     "found": {

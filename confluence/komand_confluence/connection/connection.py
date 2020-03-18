@@ -1,5 +1,5 @@
 import komand
-from .schema import ConnectionSchema
+from .schema import ConnectionSchema, Input
 # Custom imports below
 from confluence import Confluence
 
@@ -13,8 +13,8 @@ class Connection(komand.Connection):
         """
         Connect to Confluence
         """
-        self.logger.info("Connecting to Confluence: %s", params.get('url'))
+        self.logger.info("Connecting to Confluence: %s", params.get(Input.URL))
         self.client = Confluence(
-            url=params.get('url'),
-            username=params.get('credentials').get('username'),
-            password=params.get('credentials').get('password'))
+            url=params.get(Input.URL),
+            username=params.get(Input.CREDENTIALS).get('username'),
+            password=params.get(Input.CREDENTIALS).get('password'))
