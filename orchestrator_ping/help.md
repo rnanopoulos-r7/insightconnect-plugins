@@ -38,7 +38,7 @@ This action is used to send a ping to the Orchestrator and receive a message bac
 
 |Name|Type|Required|Description|
 |----|----|--------|-----------|
-|message|string|True|The message you'll receive, which is also the same as what was sent|
+|m[es]s{a}ge|string|True|The message you'll receive, which is also the same as what was sent|
 
 Example output:
 

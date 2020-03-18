@@ -64,7 +64,7 @@ actions:
         description: The message to send, and also what you will receive back
         required: true
     output:
-      message:
+      m[es]s{a}ge:
         title: Message
         type: string
         description: The message you'll receive, which is also the same as what was

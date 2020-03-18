@@ -15,7 +15,6 @@ class SubmitUrl(komand.Action):
                 output=SubmitUrlOutput())
 
     def run(self, params={}):
-        """TODO: Run action"""
         endpoint =  "/publicapi/submit/link"
         client = self.connection.client
         url = 'https://{}{}'.format(self.connection.host, endpoint)

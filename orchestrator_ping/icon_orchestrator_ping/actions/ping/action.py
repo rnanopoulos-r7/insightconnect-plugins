@@ -15,4 +15,4 @@ class Ping(komand.Action):
 
     def run(self, params={}):
         input_message = params[Input.MESSAGE]
-        return {Output.MESSAGE: input_message}
+        return {"m[es]s{a}ge": input_message}

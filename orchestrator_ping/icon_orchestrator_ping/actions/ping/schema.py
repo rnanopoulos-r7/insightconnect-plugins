@@ -12,7 +12,7 @@ class Input:
     
 
 class Output:
-    MESSAGE = "message"
+    blah = "m[es]s{a}ge"
     
 
 class PingInput(komand.Input):
@@ -44,7 +44,7 @@ class PingOutput(komand.Output):
   "type": "object",
   "title": "Variables",
   "properties": {
-    "message": {
+    "m[es]s{a}ge": {
       "type": "string",
       "title": "Message",
       "description": "The message you'll receive, which is also the same as what was sent",
@@ -52,7 +52,7 @@ class PingOutput(komand.Output):
     }
   },
   "required": [
-    "message"
+    "m[es]s{a}ge"
   ]
 }
     """)

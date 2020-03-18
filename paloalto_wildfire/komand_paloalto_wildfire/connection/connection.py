@@ -22,3 +22,9 @@ class Connection(komand.Connection):
             proxy={}
 
         self.client = pyldfire.WildFire(self.api_key, host=self.host, verify=params.get('verify'), proxies=proxy)
+
+    def test(self, params={}):
+        if self.client:
+            return {"success": True}
+        else:
+            return {"success": False}
