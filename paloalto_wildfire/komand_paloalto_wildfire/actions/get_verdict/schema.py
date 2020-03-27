@@ -24,7 +24,7 @@ class GetVerdictInput(komand.Input):
     "hash": {
       "type": "string",
       "title": "Hash",
-      "description": "The MD5 or SHA‐256 hash value of the sample",
+      "description": "The MD5 or SHA-256 hash value of the sample",
       "order": 1
     }
   },
@@ -47,7 +47,7 @@ class GetVerdictOutput(komand.Output):
     "verdict": {
       "type": "string",
       "title": "Verdict",
-      "description": "One of the following verdicts: 'Benign', 'Malware', 'Greyware', 'Pending', 'Error', or 'Not found`",
+      "description": "One of the following verdicts: 'Benign', 'Malware', 'Greyware', 'Pending', 'Error', or 'Not found'",
       "enum": [
         "Benign",
         "Malware",

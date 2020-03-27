@@ -3,11 +3,11 @@ extension: plugin
 products: [insightconnect]
 name: paloalto_wildfire
 title: Palo Alto Wildfire
-vendor: rapid7
-support: rapid7
+vendor: miketest
+support: miketest
 status: []
 description: Perform malware analysis with Palo Alto Wildfire
-version: 1.1.1
+version: 1.1.2-beta
 resources:
   source_url: https://github.com/rapid7/insightconnect-plugins/tree/master/paloalto_wildfire
   license_url: https://github.com/rapid7/insightconnect-plugins/blob/master/LICENSE
@@ -72,8 +72,7 @@ connection:
   host:
     type: string
     title: Host
-    description: Palo Alto Wildfire host in cloud or on-premise, e.g. wildfire.paloaltonetworks.com
-      or 10.3.4.50
+    description: Palo Alto Wildfire host in cloud or on-premise, e.g. wildfire.paloaltonetworks.com or 10.3.4.50
     default: wildfire.paloaltonetworks.com
     required: true
   api_key:
@@ -152,12 +151,12 @@ actions:
     description: Query for an XML or PDF report for a particular sample
     input:
       hash:
-        description: The MD5 or SHA‐256 hash value of the sample
+        description: The MD5 or SHA-256 hash value of the sample
         title: Hash
         type: string
         required: true
       format:
-        description: 'Report format: PDF or XML'
+        description: "Report format: PDF or XML"
         title: Format
         enum:
         - pdf
@@ -175,7 +174,7 @@ actions:
     description: Query for a sample file
     input:
       hash:
-        description: The MD5 or SHA‐256 hash value of the sample
+        description: The MD5 or SHA-256 hash value of the sample
         title: Hash
         type: string
         required: true
@@ -190,7 +189,7 @@ actions:
     description: Query for a PCAP
     input:
       hash:
-        description: The MD5 or SHA‐256 hash value of the sample
+        description: The MD5 or SHA-256 hash value of the sample
         title: Hash
         required: true
         type: string
@@ -201,7 +200,7 @@ actions:
         - Windows XP, Adobe Reader 9.3.3, Office 2003
         - Windows XP, Adobe Reader 9.4.0, Flash 10, Office 2007
         - Windows XP, Adobe Reader 11, Flash 11, Office 2010
-        - Windows 7 32‐bit, Adobe Reader 11, Flash 11, Office 2010
+        - Windows 7 32-bit, Adobe Reader 11, Flash 11, Office 2010
         - Windows 7 64bit, Adobe Reader 11, Flash 11, Office 2010
         - Android 2.3, API 10, avd2.3.1
         - Mac OS X Mountain Lion
@@ -218,15 +217,14 @@ actions:
     description: Query for a files classification
     input:
       hash:
-        description: The MD5 or SHA‐256 hash value of the sample
+        description: The MD5 or SHA-256 hash value of the sample
         title: Hash
         type: string
         required: true
     output:
       verdict:
         title: Verdict
-        description: 'One of the following verdicts: ''Benign'', ''Malware'', ''Greyware'',
-          ''Pending'', ''Error'', or ''Not found`'
+        description: "One of the following verdicts: 'Benign', 'Malware', 'Greyware', 'Pending', 'Error', or 'Not found'"
         enum:
         - Benign
         - Malware
