@@ -31,6 +31,7 @@ class SubmitFile(komand.Action):
             except pyldfire.WildFireException as e:
                 if e.args and "Unsupport File type" in e.args[0]:  # Yes, that's the error, not a typo
                     out['supported_file_type'] = False
+                elif e.args and
                 else:
                     raise PluginException(PluginException.Preset.UNKNOWN) from e
             _file.close()
