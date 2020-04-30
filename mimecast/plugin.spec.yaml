@@ -14,8 +14,8 @@ resources:
   license_url: https://github.com/rapid7/insightconnect-plugins/blob/master/LICENSE
   vendor_url: http://mimecast.com
 tags:
-- mimecast
-- email
+  - mimecast
+  - email
 hub_tags:
   use_cases: [threat_detection_and_response]
   keywords: [mimecast, email]
@@ -282,6 +282,791 @@ types:
       title: User Override
       description: The action requested by the user
       type: string
+      required: false
+  search_by:
+    value:
+      title: Value
+      description: The text used to filter results
+      type: string
+      required: false
+      default: "TODO"
+      example: "TODO"
+    field_name:
+      title: Field Name
+      description: Message fields to filter based on
+      type: string
+      required: false
+      default: all
+      example: all
+      enum:
+        - all
+        - subject
+        - sender
+        - recipient
+        - reason_code
+  filter_by:
+    route:
+      title: Route
+      description: Specify the route of emails to return
+      type: string
+      required: false
+      default: all
+      example: all
+      enum:
+        - all
+        - internal
+        - outbound
+        - inbound
+        - external
+    held_group:
+      title: Held Group
+      description: Specify the level of hold placed on messages to return
+      type: string
+      required: false
+      default: administrator
+      example: administrator
+      enum:
+        - administrator
+        - moderator
+        - user
+        - cluster
+    attachments:
+      title: Attachments
+      description: Specify if results should be held attachments
+      type: boolean
+      required: false
+      default: false
+      example: false
+      enum:
+        - all
+        - subject
+        - sender
+        - recipient
+        - reason_code
+  email_address:
+    emailAddress:
+      title: Email Address
+      description: An email address
+      type: string
+      required: false
+    displayableName:
+      title: Displayable Name
+      description: A display name, if available
+      type: string
+      required: false
+  held_emails:
+    heldReason:
+      title: Held Reason
+      description: The general reason for holding a message
+      type: string
+      required: false
+    heldGroup:
+      title: Held Group
+      description: The level of a message hold
+      type: string
+      required: false
+      enum:
+        - administrator
+        - moderator
+        - user
+    heldSince:
+      title: Held Since
+      description: The date that the message was held
+      type: string
+      required: false
+    messageInfo:
+      title: Message Info
+      description: The name of the definition that held a message
+      type: string
+      required: false
+    policyInfo:
+      title: Policy Info
+      description: The name of the policy that held a message
+      type: string
+      required: false
+    size:
+      title: Size
+      description: The size of the message in bytes
+      type: integer
+      required: false
+    id:
+      title: ID
+      description: The Mimecast secure ID of a message
+      type: string
+      required: false
+    status:
+      title: Status
+      description: The current held status of a message
+      type: string
+      required: false
+    fromEnv:
+      title: From ENV
+      description: Object containing the envelope from information
+      type: email_address
+      required: false
+    fromHdr:
+      title: From HDR
+      description: Object containing the header from information
+      type: email_address
+      required: false
+    to:
+      title: Held Reason
+      description: An array of recipeint objects
+      type: "[]email_address"
+      required: false
+    received:
+      title: Received
+      description: The date that the message was received by Mimecast
+      type: string
+      required: false
+    subject:
+      title: Subject
+      description: The mesasge subject
+      type: string
+      required: false
+    senderIP:
+      title: Sender IP
+      description: The IP address that delivered the message to Mimecast
+      type: string
+      required: false
+    attachments:
+      title: Attachments
+      description: Returns true if the message contains attachments; otherwise returns false
+      type: boolean
+      required: false
+    route:
+      title: Route
+      description: The route of the held message
+      type: string
+      required: false
+      enum:
+        - inbound
+        - outbound
+        - internal
+        - external
+    sent:
+      title: Sent
+      description: The date that the mesage was sent
+      type: string
+      required: false
+  search_criteria:
+    end:
+      title: "End"
+      type: string
+      description: "The end date of messages included. Default is the current day"
+      required: false
+    fileHash:
+      title: "Filehash"
+      type: string
+      description: "The file hash used in creation of the remediation incident"
+      required: false
+    from:
+      title: "From"
+      type: string
+      description: "The sender email address or domain"
+      required: false
+    messageId:
+      title: "Messageid"
+      type: string
+      description: "The message id use in creation of the remediation incident"
+      required: false
+    restoreCode:
+      title: "Restore Code"
+      type: string
+      description: "The restore incident code"
+      required: false
+    start:
+      title: "Start"
+      type: string
+      description: "The start date of messages included"
+      required: false
+    to:
+      title: "To"
+      type: string
+      description: "The recipient email address or domain"
+      required: false
+    unremediateCode:
+      title: "Unremediatecode"
+      type: string
+      description: "The Mimecast code used to restore a previously remediated message"
+      required: false
+  incident:
+    code:
+      title: "Code"
+      type: string
+      description: "The incident code generated at creation, to be used as a reference for the remediation incident"
+      required: false
+    successful:
+      title: "Successful"
+      type: integer
+      description: "The number successfully remediated messages"
+      required: false
+    modified:
+      title: "Modified"
+      type: string
+      description: "The date and time of the incident's last change"
+      required: false
+    reason:
+      title: "Reason"
+      type: string
+      description: "The reason provided at the creation of the remediation incident"
+      required: false
+    id:
+      title: "ID"
+      type: string
+      description: "The secure Mimecast remediation ID"
+      required: false
+    create:
+      title: "Create"
+      type: string
+      description: "The incident creation data and time"
+      required: false
+    identified:
+      title: "Identified"
+      type: integer
+      description: "The number of messages identified based on the search criteria"
+      required: false
+    searchCriteria:
+      title: Search Criteria
+      type: "[]search_criteria"
+      description: "The search criteria used to identify messages"
+      required: false
+    failed:
+      title: "Failed"
+      type: integer
+      description: "The number of messages that failed to remediate"
+      required: false
+    type:
+      title: "Type"
+      type: string
+      description: "The type of incident"
+      required: false
+      enum:
+        - manual
+        - automatic
+        - notify_only
+    restored:
+      title: "Restored"
+      type: integer
+      description: "The number of messages that were restored from the incident"
+      required: false
+  hash_status:
+    detected:
+      title: "Detected"
+      type: boolean
+      description: Presence of hash within account
+      required: false
+      example: "TODO"
+    hash:
+      title: "Hash"
+      type: boolean
+      description: File hash value
+      required: false
+      example: "TODO"
+  stix_object:
+    id:
+      title: ID
+      type: string
+      description: Stix ID
+      required: false
+    objects:
+      title: "Objects"
+      type: "[]object"
+      description: "Objects"
+      required: false
+    spec_version:
+      title: "Spec Version"
+      type: string
+      description: "Spec version"
+      required: false
+    type:
+      title: "Type"
+      type: string
+      description: "Type"
+      required: false
+  advanced_options:
+    from:
+      title: From
+      type: string
+      description: The sending email address or domain of the messages to track
+      required: false
+    to:
+      title: To
+      type: string
+      description: The recipient email address or domain of the messages to track
+      required: false
+    subject:
+      title: Subject
+      type: string
+      description: The subject of the messages to track
+      required: false
+    senderIP:
+      title: Sender IP
+      type: string
+      description: The source IP address of messages to track
+      required: false
+  tracked_emails:
+    attachments:
+      title: Attachments
+      type: boolean
+      description: If the message has attachments
+      required: false
+    fromEnv:
+      title: From Envelope
+      type: email_address
+      description: An object describing the envelope from address of the message
+      required: false
+    fromHdr:
+      title: From HDR
+      type: email_address
+      description: An object describing the header from address of the message
+      required: false
+    id:
+      title: ID
+      type: string
+      description: The Mimecast ID of the message. Used to load more information about the message
+      required: false
+    received:
+      title: Received
+      type: string
+      description: The date and time the message was received by Mimecast
+      required: false
+    route:
+      title: Route
+      type: string
+      description: The route of the message
+      required: false
+    senderIP:
+      title: Sender IP
+      type: string
+      description: The source IP address of the message
+      required: false
+    sent:
+      title: Sent
+      type: string
+      description: The date and time that the message was sent / processed by Mimecast
+      required: false
+    status:
+      title: Status
+      type: string
+      description: The status of the message
+      required: false
+    subject:
+      title: Subject
+      type: string
+      description: The subject of the message
+      required: false
+    to:
+      title: "To"
+      type: "[]email_address"
+      description: An array of recipient objects
+      required: false
+  retentionInfo:
+    audits:
+      title: Audits
+      type: "[]object"
+      description: An array of objects describing the date, type, and information about any audits carried out on the message
+      required: false
+    currentPurgeDate:
+      title: Current Purge Date
+      type: string
+      description: The date that the message is scheduled to be purged from Mimecast
+      required: false
+    fbrExpireCheck:
+      title: FBR Expire Check
+      type: "[]object"
+      description: An array of date strings describing when Granular Retention policies were checked, if applicable
+      required: false
+    fbrStamps:
+      title: FBR Stamps
+      type: "[]object"
+      description: An array of objects describing the email address, folder, recipient visibility, expiry, purge, and policy fields applied to the message as a result of a Granular retention policy action, if applicable
+      required: false
+    litigationHoldInfo:
+      title: Litigation Hold Info
+      type: "[]object"
+      description: An array containing objects describing the expiry, description and Mimecast ID of any litigation hold policies applied to the message
+      required: false
+    originalPurgeDate:
+      title: Original Purge Date
+      type: string
+      description: "The message's original purge date"
+      required: false
+    purgeBasedOn:
+      title: Purge Based On
+      type: string
+      description: Describes what the message purge date is based on
+      required: false
+    retentionAdjustmentDays:
+      title: Retention Adjustment Days
+      type: integer
+      description: The number of days that a retention adjustment has been applied to the message
+      required: false
+    smartTags:
+      title: Smart Tags
+      type: "[]object"
+      description: An array of smart tag objects that the message is assigned to
+      required: false
+  messageInfo:
+    attachments:
+      title: "Attachments"
+      type: "[]object"
+      description: "Attachments"
+      required: false
+    cc:
+      title: "Cc"
+      type: "[]string"
+      description: "Cc"
+      required: false
+    fromEnvelope:
+      title: "Fromenvelope"
+      type: string
+      description: "Fromenvelope"
+      required: false
+    fromHeader:
+      title: "Fromheader"
+      type: string
+      description: "Fromheader"
+      required: false
+    htmlBody:
+      title: "Htmlbody"
+      type: string
+      description: "Htmlbody"
+      required: false
+    processed:
+      title: "Processed"
+      type: string
+      description: "Processed"
+      required: false
+    sent:
+      title: "Sent"
+      type: string
+      description: "Sent"
+      required: false
+    subject:
+      title: "Subject"
+      type: string
+      description: "Subject"
+      required: false
+    textBody:
+      title: "Textbody"
+      type: string
+      description: "Textbody"
+      required: false
+    to:
+      title: "To"
+      type: "[]string"
+      description: "To"
+      required: false
+    transmissionInfo:
+      title: "Transmissioninfo"
+      type: string
+      description: "Transmissioninfo"
+      required: false
+  components:
+    extension:
+      title: "Extension"
+      type: string
+      description: "Extension"
+      required: false
+    mimeType:
+      title: "Mimetype"
+      type: string
+      description: "Mimetype"
+      required: false
+    name:
+      title: "Name"
+      type: string
+      description: "Name"
+      required: false
+    size:
+      title: "Size"
+      type: integer
+      description: "Size"
+      required: false
+    type:
+      title: "Type"
+      type: string
+      description: "Type"
+      required: false
+  recipientMetaInfo:
+    binaryEmailSize:
+      title: "Binaryemailsize"
+      type: integer
+      description: "Binaryemailsize"
+      required: false
+    components:
+      title: "Components"
+      type: "[]components"
+      description: "Components"
+      required: false
+    encryptionInfo:
+      title: "Encryptioninfo"
+      type: string
+      description: "Encryptioninfo"
+      required: false
+    messageExpiresIn:
+      title: "Messageexpiresin"
+      type: integer
+      description: "Messageexpiresin"
+      required: false
+    processingServer:
+      title: "Processingserver"
+      type: string
+      description: "Processingserver"
+      required: false
+    receiptAcknowledgement:
+      title: "Receiptacknowledgement"
+      type: string
+      description: "Receiptacknowledgement"
+      required: false
+    receiptEvent:
+      title: "Receiptevent"
+      type: string
+      description: "Receiptevent"
+      required: false
+    remoteHost:
+      title: "Remotehost"
+      type: string
+      description: "Remotehost"
+      required: false
+    remoteIp:
+      title: "Remoteip"
+      type: string
+      description: "Remoteip"
+      required: false
+    remoteServerGreeting:
+      title: "Remoteservergreeting"
+      type: string
+      description: "Remoteservergreeting"
+      required: false
+    spamEvent:
+      title: "Spamevent"
+      type: string
+      description: "Spamevent"
+      required: false
+    transmissionEnd:
+      title: "Transmissionend"
+      type: string
+      description: "Transmissionend"
+      required: false
+    transmissionSize:
+      title: "Transmissionsize"
+      type: integer
+      description: "Transmissionsize"
+      required: false
+    transmissionStart:
+      title: "Transmissionstart"
+      type: string
+      description: "Transmissionstart"
+      required: false
+  recipientInfo:
+    messageInfo:
+      title: Message Info
+      type: messageInfo
+      description: An object describing recipient message information
+      required: false
+    recipientMetaInfo:
+      title: Recipient Meta Info
+      type: recipientMetaInfo
+      description: An object describing the message meta-data
+      required: false
+  deliveryMetaInfo:
+    components:
+      title: "Components"
+      type: "[]components"
+      description: "Components"
+      required: false
+    deliveryEvent:
+      title: "Deliveryevent"
+      type: string
+      description: "Deliveryevent"
+      required: false
+    emailAddress:
+      title: "Emailaddress"
+      type: string
+      description: "Emailaddress"
+      required: false
+    encryptionInfo:
+      title: "Encryptioninfo"
+      type: string
+      description: "Encryptioninfo"
+      required: false
+    messageExpiresIn:
+      title: "Messageexpiresin"
+      type: integer
+      description: "Messageexpiresin"
+      required: false
+    processingServer:
+      title: "Processingserver"
+      type: string
+      description: "Processingserver"
+      required: false
+    receiptAcknowledgement:
+      title: "Receiptacknowledgement"
+      type: string
+      description: "Receiptacknowledgement"
+      required: false
+    remoteHost:
+      title: "Remotehost"
+      type: string
+      description: "Remotehost"
+      required: false
+    remoteIp:
+      title: "Remoteip"
+      type: string
+      description: "Remoteip"
+      required: false
+    remoteServerGreeting:
+      title: "Remoteservergreeting"
+      type: string
+      description: "Remoteservergreeting"
+      required: false
+    transmissionEnd:
+      title: "Transmissionend"
+      type: string
+      description: "Transmissionend"
+      required: false
+    transmissionSize:
+      title: "Transmissionsize"
+      type: integer
+      description: "Transmissionsize"
+      required: false
+    transmissionStart:
+      title: "Transmissionstart"
+      type: string
+      description: "Transmissionstart"
+      required: false
+  messageInfo_0:
+    attachments:
+      title: "Attachments"
+      type: "[]object"
+      description: "Attachments"
+      required: false
+    cc:
+      title: "Cc"
+      type: "[]string"
+      description: "Cc"
+      required: false
+    fromEnvelope:
+      title: "Fromenvelope"
+      type: string
+      description: "Fromenvelope"
+      required: false
+    fromHeader:
+      title: "Fromheader"
+      type: string
+      description: "Fromheader"
+      required: false
+    htmlBody:
+      title: "Htmlbody"
+      type: string
+      description: "Htmlbody"
+      required: false
+    processed:
+      title: "Processed"
+      type: string
+      description: "Processed"
+      required: false
+    route:
+      title: "Route"
+      type: string
+      description: "Route"
+      required: false
+    sent:
+      title: "Sent"
+      type: string
+      description: "Sent"
+      required: false
+    subject:
+      title: "Subject"
+      type: string
+      description: "Subject"
+      required: false
+    textBody:
+      title: "Textbody"
+      type: string
+      description: "Textbody"
+      required: false
+    to:
+      title: "To"
+      type: "[]string"
+      description: "To"
+      required: false
+    transmissionInfo:
+      title: "Transmissioninfo"
+      type: string
+      description: "Transmissioninfo"
+      required: false
+  policyInfo:
+    inherited:
+      title: "Inherited"
+      type: boolean
+      description: "Inherited"
+      required: false
+    policyName:
+      title: "Policyname"
+      type: string
+      description: "Policyname"
+      required: false
+    policyType:
+      title: "Policytype"
+      type: string
+      description: "Policytype"
+      required: false
+  user@domain.com:
+    deliveryMetaInfo:
+      title: "Deliverymetainfo"
+      type: deliveryMetaInfo
+      description: "Deliverymetainfo"
+      required: false
+    messageInfo:
+      title: "Messageinfo"
+      type: messageInfo_0
+      description: "Messageinfo"
+      required: false
+    policyInfo:
+      title: "Policyinfo"
+      type: "[]policyInfo"
+      description: "Policyinfo"
+      required: false
+  attachments:
+    id:
+      title: ID
+      type: string
+      description: The Mimecast ID of a file that has been previously uploaded to Mimecast using the file_upload action
+      required: true
+    size:
+      title: Size
+      type: integer
+      description: The size of the message attachment
+      required: true
+    filename:
+      title: Filename
+      type: string
+      description: The file name to set for the attachment. If not set the API will automatically set the file name to "Mail Attachment" without a file extension
+      required: false
+  html_body:
+    content:
+      title: Content
+      type: string
+      description: The content of the message body as a string
+      required: false
+    id:
+      title: ID
+      type: string
+      description: The Mimecast ID of a body part that has been previously uploaded to Mimecast using the /api/file/file-upload function
+      required: false
+  extra_headers:
+    name:
+      title: "Name"
+      type: string
+      description: "Name"
+      required: false
+    value:
+      title: "Value"
+      type: string
+      description: "Value"
       required: false
 
 connection:
@@ -784,3 +1569,416 @@ actions:
         description: Original decoded URL
         type: string
         required: true
+  get_hold_message_list:
+    title: Get Hold Message List
+    description: Get information about held messages
+    input:
+      admin:
+        title: Admin
+        description: Level of results to return
+        type: boolean
+        required: false
+        default: false
+        example: false
+      search_by:
+        title: Search By
+        description: Object data used to filter results
+        type: search_by
+        required: false
+      start_date:
+        title: Start Date Time
+        description: The date and time of the earliest message to return, in the following format, 2011-12-03T10:15:30+0000
+        type: string
+        required: false
+        example: 2011-12-03T10:15:30+0000
+      end_date:
+        title: End Date Time
+        description: The date and time of the latest message to return, in the following format, 2011-12-03T10:15:30+0000
+        type: string
+        required: false
+        example: 2011-12-03T10:15:30+0000
+      filter_by:
+        title: Filter By
+        description: Filter options to narrow results
+        type: "[]filter_by"
+        required: false
+        example: 2011-12-03T10:15:30+0000
+    output:
+      held_emails:
+        title: Held Emails
+        description: An array of held messages
+        type: "[]held_emails"
+        required: true
+  get_message_hold_summary_list:
+    title: Get Message Hold Summary List
+    description: Get counts of currenlty held messages for each hold reason
+    output:
+      policy_info:
+        title: Policy Info
+        description: The name of the policy or definition that held a message
+        type: string
+        required: false
+      number_of_items:
+        title: Number Of Items
+        description: The number of messages currenlty held for this reason
+        type: integer
+        required: false
+  reject_message:
+    title: Reject Message
+    description: Reject a currently held message based
+    input:
+      ids:
+        title: IDS
+        description: An array of Mimecast secure ids for messages to be rejected
+        type: "[]string"
+        required: true
+        example: "TODO"
+      message:
+        title: Message
+        description: Rejection message to be returned to sender
+        type: string
+        required: false
+        example: "TODO"
+      reason_type:
+        title: Reason Type
+        description: The reason code for rejecting the message
+        type: string
+        required: false
+        example: "MESSAGE CONTAINS UNDESIRABLE CONTENT"
+        enum:
+          - "MESSAGE CONTAINS UNDESIRABLE CONTENT"
+          - "MESSAGE CONTAINS CONFIDENTIAL INFORMATION"
+          - "REVIEWER DISAPPROVES OF CONTENT"
+          - "INAPPROPRIATE COMMUNICATION"
+          - "MESSAGE GOES AGAINST EMAIL POLICIES"
+      notify:
+        title: Notify
+        description: Deliever a rejection notification to the sender
+        type: boolean
+        required: false
+        default: false
+        example: false
+    output:
+      id:
+        title: ID
+        description: The Mimecast secure ID of the message hold
+        type: string
+        required: false
+      reject:
+        title: Reject
+        description: Returns true if the message was rejected
+        type: boolean
+        required: false
+  release_message:
+    title: Release Message
+    description: Release a currently held message
+    input:
+      id:
+        title: ID
+        description: The Mimecast secure ID of a message
+        type: string
+        required: true
+        example: "TODO"
+    output:
+      id:
+        title: ID
+        description: The Mimecast secure ID of the message hold
+        type: string
+        required: false
+      release:
+        title: Release
+        description: Returns true if the message was released
+        type: boolean
+        required: false
+  create_remediation_incident:
+    title: Create Remediation Incident
+    description: Create a remediation incident, by messageId or file hash
+    input:
+      reason:
+        title: Reason
+        description: The reason for creating the remediation incident
+        type: string
+        required: true
+        example: "2015-11-16T14:49:18+0000"
+      hashOrMessageId:
+        title: Hash Or Message ID
+        description: The file hash or messageId value
+        type: string
+        required: true
+        example: "2015-11-16T14:49:18+0000"
+      search_by:
+        title: Search By
+        description: The message component in which to search by. When using messageId, the "<" ">" delimiters are required
+        type: string
+        required: false
+        default: hash
+        example: hash
+        enum:
+          - hash
+          - messageId
+      start_date:
+        title: Start Date
+        description: The earliest date of messages to remediate. Default value is one month back
+        type: string
+        required: false
+        example: "2015-11-16T14:49:18+0000"
+      end_date:
+        title: End Date
+        description: The most recent date of messages to remediate. Default value is the end of the current day
+        type: string
+        required: false
+        example: "2015-11-16T14:49:18+0000"
+    output:
+      data:
+        title: Data
+        description: Incident information
+        type: incident
+        required: true
+  get_remediation_incident:
+    title: Get Remediation Incident
+    description: Get information about an exisiting incident
+    input:
+      id:
+        title: ID
+        description: The Mimecast ID for a remediation incident, provided when an incident is created
+        type: string
+        required: true
+        example: "TODO"
+    output:
+      data:
+        title: Data
+        description: Incident information
+        type: incident
+        required: true
+  search_file_hash:
+    title: Search File Hash
+    description: identify if an account has seen a specific file hash within mesasges over the last year. A maximum of 100 hashes can be submitted in a single call. Currently this action does not support image file hashes
+    input:
+      hashes:
+        title: Hashes
+        description: List of file hashes to determine if they have been seen within an account
+        type: "[]string"
+        required: true
+        example: "TODO"
+    output:
+      failed_hashes:
+        title: Failed Hashes
+        description: List of hashses that failed verification
+        type: "[]string"
+        required: true
+      hash_status:
+        title: Hash Status
+        description: List of hashes that were deteced within account
+        type: "[]hash_status"
+        required: true
+  get_threat_intel_feed:
+    title: Get Threat Intel Feed
+    description: Return identified malware threats at a customer or regional grid level
+    input:
+      start_date:
+        title: Start Date
+        description: Start Date in the ISO 8601 date time format (e.g. 2011-12-03T10:15:30+0000). Default is 7 days before current date
+        type: string
+        required: false
+        example: 2011-12-03T10:15:30+0000
+      end_date:
+        title: End Date
+        description: End Date in the ISO 8601 date time format (e.g. 2011-12-03T10:15:30+0000). Default is current date
+        type: string
+        required: false
+        example: 2011-12-03T10:15:30+0000
+      compress:
+        title: Compress
+        description: Compress multiple feed files
+        type: string
+        required: false
+        default: false
+        example: false
+      file_type:
+        title: File Type
+        description: File type of respective feed
+        type: string
+        required: false
+        default: csv
+        example: csv
+        enum:
+          - csv
+          - stix
+      feed_type:
+        title: Feed Type
+        description: The scope of data to return, either for the account, or for the regions grid
+        type: string
+        required: false
+        example: malware_customer
+        default: malware_customer
+        enum:
+          - malware_customer
+          - malware_grid
+      token:
+        title: Token
+        description: Secure ID of the threat feed file that was previously downloaded. The Secure ID is included in every response
+        type: string
+        required: false
+        example: "TODO"
+    output:
+      stix_objects:
+        title: Stix Objects
+        description: Stix object
+        type: stix_object
+        required: false
+      csv_lines:
+        title: CSV Lines
+        description: List of csv lines
+        type: "[]string"
+        required: false
+  message_finder_search:
+    title: Message Finder Search
+    description: Return tracked email objects
+    input:
+      start_date:
+        title: Start Date
+        description: The date and time of the earliest message to track, in the following format, 2011-12-03T10:15:30+0000
+        type: string
+        required: false
+        example: 2011-12-03T10:15:30+0000
+      end_date:
+        title: End Date
+        description: The date and time of the latest message to track, in the following format, 2011-12-03T10:15:30+0000
+        type: string
+        required: false
+        example: 2011-12-03T10:15:30+0000
+      search_reason:
+        title: Search Reason
+        description: Reason for Tracking a email, used for activity tracking puposes
+        type: string
+        required: false
+        example: "TODO"
+      message_id:
+        title: Message ID
+        description: The internet message ID of the message to track
+        type: string
+        required: false
+        example: "TODO"
+      advanced_options:
+        title: Advanced Track And Trace Options
+        description: An object describing the advanced filters to use in the tracking query
+        type: advanced_options
+        required: false
+    output:
+      tracked_emails:
+        title: "Tracked Emails"
+        type: "[]tracked_emails"
+        description: An array of tracked email objects
+        required: false
+  get_message_info:
+    title: Get Message Info
+    description: Return message info
+    input:
+      id:
+        title: ID
+        description: The Mimecast ID of the message to load. This is returned by the message_finder_search action
+        type: string
+        required: true
+        example: "TODO"
+    output:
+      status:
+        title: "Status"
+        type: string
+        description: The message status
+        required: false
+      retentionInfo:
+        title: Retention Info
+        type: retentionInfo
+        description: An object describing the retention information applied to the message
+        required: false
+      recipientInfo:
+        title: Recipient Info
+        type: recipientInfo
+        description: An object describing the recipient information applied to the message
+        required: false
+      deliveredMessage:
+        title: Delivered Message
+        type: object
+        description: If rewriting of this URL in emails is disabled
+        required: false
+      id:
+        title: ID
+        type: string
+        description: The Mimecast ID of the message
+        required: false
+  file_upload:
+    title: File Upload
+    description: File Upload
+    input:
+      file:
+        title: File
+        description: The file to upload
+        type: file
+        required: true
+        example: '{"filename": "file.txt", "content": "UmFwaWQ3IEluc2lnaHRDb25uZWN0Cg=="}'
+    output:
+      id:
+        title: ID
+        type: string
+        description: The Mimecast ID of the file
+        required: false
+  send_email:
+    title: Send Email
+    description: Send Email
+    input:
+      to:
+        title: To
+        type: "[]email_address"
+        description: An array of recipient objects describing the "to" recipient(s) of the message
+        required: true
+      subject:
+        title: Subject
+        type: string
+        description: The message subject
+        required: true
+      from:
+        title: From
+        type: email_address
+        description: An object describing the sender of the message. If not included, the details of the authorized user are used
+        required: false
+      attachments:
+        title: Attachments
+        type: "[]attachments"
+        description: An attachment object describing any attachments on the message
+        required: false
+      html_body:
+        title: Html Body
+        type: html_body
+        description: A body object describing the html body of the message
+        required: false
+      cc:
+        title: CC
+        type: "[]email_address"
+        description: An array of recipient objects describing the "cc" recipient(s) of the message
+        required: false
+      plain_body:
+        title: Plain Body
+        type: html_body
+        description: A body object describing the plain text body of the message
+        required: false
+      extra_headers:
+        title: Extra Headers
+        type: "[]extra_headers"
+        description: An array of header objects describing any custom message headers to be included on the message
+        required: false
+      bcc:
+        title: BCC
+        type: "[]email_address"
+        description: An array of recipient objects describing the "bcc" recipient(s) of the message
+        required: false
+    output:
+      message_id:
+        title: Message ID
+        type: string
+        description: The internet message id that the API automatically generates for the message
+        required: false
+      message_date_header:
+        title: Message Date Header
+        type: string
+        description: The date that the message was sent via the API
+        required: false

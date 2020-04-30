@@ -1,5 +1,5 @@
 import komand
-from .schema import AddGroupMemberInput, AddGroupMemberOutput, Input, Output
+from .schema import AddGroupMemberInput, AddGroupMemberOutput, Input, Output, Component
 # Custom imports below
 from komand_mimecast.util import util
 from komand.exceptions import PluginException
@@ -12,7 +12,7 @@ class AddGroupMember(komand.Action):
     def __init__(self):
         super(self.__class__, self).__init__(
                 name='add_group_member',
-                description='Add an email address or domain to a group',
+                description=Component.DESCRIPTION,
                 input=AddGroupMemberInput(),
                 output=AddGroupMemberOutput())
 

@@ -37,6 +37,355 @@ The connection configuration accepts the following parameters:
 
 ### Actions
 
+#### Send Email
+
+This action is used to send Email.
+
+##### Input
+
+|Name|Type|Default|Required|Description|Enum|Example|
+|----|----|-------|--------|-----------|----|-------|
+|attachments|[]attachments|None|False|An attachment object describing any attachments on the message|None|None|
+|bcc|[]email_address|None|False|An array of recipient objects describing the "bcc" recipient(s) of the message|None|None|
+|cc|[]email_address|None|False|An array of recipient objects describing the "cc" recipient(s) of the message|None|None|
+|extra_headers|[]extra_headers|None|False|An array of header objects describing any custom message headers to be included on the message|None|None|
+|from|email_address|None|False|An object describing the sender of the message. If not included, the details of the authorized user are used|None|None|
+|html_body|html_body|None|False|A body object describing the html body of the message|None|None|
+|plain_body|html_body|None|False|A body object describing the plain text body of the message|None|None|
+|subject|string|None|True|The message subject|None|None|
+|to|[]email_address|None|True|An array of recipient objects describing the "to" recipient(s) of the message|None|None|
+
+Example input:
+
+```
+```
+
+##### Output
+
+|Name|Type|Required|Description|
+|----|----|--------|-----------|
+|message_date_header|string|False|The date that the message was sent via the API|
+|message_id|string|False|The internet message id that the API automatically generates for the message|
+
+Example output:
+
+```
+
+```
+
+#### Search File Hash
+
+This action is used to identify if an account has seen a specific file hash within mesasges over the last year. A maximum of 100 hashes can be submitted in a single call. Currently this action does not support image file hashes.
+
+##### Input
+
+|Name|Type|Default|Required|Description|Enum|Example|
+|----|----|-------|--------|-----------|----|-------|
+|hashes|[]string|None|True|List of file hashes to determine if they have been seen within an account|None|TODO|
+
+Example input:
+
+```
+```
+
+##### Output
+
+|Name|Type|Required|Description|
+|----|----|--------|-----------|
+|failed_hashes|[]string|True|List of hashses that failed verification|
+|hash_status|[]hash_status|True|List of hashes that were deteced within account|
+
+Example output:
+
+```
+```
+
+#### Release Message
+
+This action is used to release a currently held message.
+
+##### Input
+
+|Name|Type|Default|Required|Description|Enum|Example|
+|----|----|-------|--------|-----------|----|-------|
+|id|string|None|True|The Mimecast secure ID of a message|None|TODO|
+
+Example input:
+
+```
+```
+
+##### Output
+
+|Name|Type|Required|Description|
+|----|----|--------|-----------|
+|id|string|False|The Mimecast secure ID of the message hold|
+|release|boolean|False|Returns true if the message was released|
+
+Example output:
+
+```
+```
+
+#### Reject Message
+
+This action is used to reject a currently held message based.
+
+##### Input
+
+|Name|Type|Default|Required|Description|Enum|Example|
+|----|----|-------|--------|-----------|----|-------|
+|ids|[]string|None|True|An array of Mimecast secure ids for messages to be rejected|None|TODO|
+|message|string|None|False|Rejection message to be returned to sender|None|TODO|
+|notify|boolean|False|False|Deliever a rejection notification to the sender|None|False|
+|reason_type|string|None|False|The reason code for rejecting the message|['MESSAGE CONTAINS UNDESIRABLE CONTENT', 'MESSAGE CONTAINS CONFIDENTIAL INFORMATION', 'REVIEWER DISAPPROVES OF CONTENT', 'INAPPROPRIATE COMMUNICATION', 'MESSAGE GOES AGAINST EMAIL POLICIES']|MESSAGE CONTAINS UNDESIRABLE CONTENT|
+
+Example input:
+
+```
+```
+
+##### Output
+
+|Name|Type|Required|Description|
+|----|----|--------|-----------|
+|id|string|False|The Mimecast secure ID of the message hold|
+|reject|boolean|False|Returns true if the message was rejected|
+
+Example output:
+
+```
+```
+
+#### Message Finder Search
+
+This action is used to return tracked email objects.
+
+##### Input
+
+|Name|Type|Default|Required|Description|Enum|Example|
+|----|----|-------|--------|-----------|----|-------|
+|advanced_options|advanced_options|None|False|An object describing the advanced filters to use in the tracking query|None|None|
+|end_date|string|None|False|The date and time of the latest message to track, in the following format, 2011-12-03T10:15:30+0000|None|2011-12-03T10:15:30+0000|
+|message_id|string|None|False|The internet message ID of the message to track|None|TODO|
+|search_reason|string|None|False|Reason for Tracking a email, used for activity tracking puposes|None|TODO|
+|start_date|string|None|False|The date and time of the earliest message to track, in the following format, 2011-12-03T10:15:30+0000|None|2011-12-03T10:15:30+0000|
+
+Example input:
+
+```
+```
+
+##### Output
+
+|Name|Type|Required|Description|
+|----|----|--------|-----------|
+|tracked_emails|[]tracked_emails|False|An array of tracked email objects|
+
+Example output:
+
+```
+
+```
+
+#### Get Threat Intel Feed
+
+This action is used to return identified malware threats at a customer or regional grid level.
+
+##### Input
+
+|Name|Type|Default|Required|Description|Enum|Example|
+|----|----|-------|--------|-----------|----|-------|
+|compress|string|False|False|Compress multiple feed files|None|False|
+|end_date|string|None|False|End Date in the ISO 8601 date time format (e.g. 2011-12-03T10:15:30+0000). Default is current date|None|2011-12-03T10:15:30+0000|
+|feed_type|string|malware_customer|False|The scope of data to return, either for the account, or for the regions grid|['malware_customer', 'malware_grid']|malware_customer|
+|file_type|string|csv|False|File type of respective feed|['csv', 'stix']|csv|
+|start_date|string|None|False|Start Date in the ISO 8601 date time format (e.g. 2011-12-03T10:15:30+0000). Default is 7 days before current date|None|2011-12-03T10:15:30+0000|
+|token|string|None|False|Secure ID of the threat feed file that was previously downloaded. The Secure ID is included in every response|None|TODO|
+
+Example input:
+
+```
+```
+
+##### Output
+
+|Name|Type|Required|Description|
+|----|----|--------|-----------|
+|csv_lines|[]string|False|List of csv lines|
+|stix_objects|stix_object|False|Stix object|
+
+Example output:
+
+```
+```
+
+#### Get Remediation Incident
+
+This action is used to get information about an exisiting incident.
+
+##### Input
+
+|Name|Type|Default|Required|Description|Enum|Example|
+|----|----|-------|--------|-----------|----|-------|
+|id|string|None|True|The Mimecast ID for a remediation incident, provided when an incident is created|None|TODO|
+
+Example input:
+
+```
+```
+
+##### Output
+
+|Name|Type|Required|Description|
+|----|----|--------|-----------|
+|data|incident|True|Incident information|
+
+Example output:
+
+```
+```
+
+#### Get Message Info
+
+This action is used to return message info.
+
+##### Input
+
+|Name|Type|Default|Required|Description|Enum|Example|
+|----|----|-------|--------|-----------|----|-------|
+|id|string|None|True|The Mimecast ID of the message to load. This is returned by the message_finder_search action|None|TODO|
+
+Example input:
+
+```
+```
+
+##### Output
+
+|Name|Type|Required|Description|
+|----|----|--------|-----------|
+|deliveredMessage|object|False|If rewriting of this URL in emails is disabled|
+|id|string|False|The Mimecast ID of the message|
+|recipientInfo|recipientInfo|False|An object describing the recipient information applied to the message|
+|retentionInfo|retentionInfo|False|An object describing the retention information applied to the message|
+|status|string|False|The message status|
+
+Example output:
+
+```
+
+```
+
+#### Get Message Hold Summary List
+
+This action is used to get counts of currenlty held messages for each hold reason.
+
+##### Input
+
+_This action does not contain any inputs._
+
+##### Output
+
+|Name|Type|Required|Description|
+|----|----|--------|-----------|
+|number_of_items|integer|False|The number of messages currenlty held for this reason|
+|policy_info|string|False|The name of the policy or definition that held a message|
+
+Example output:
+
+```
+
+```
+
+#### Get Hold Message List
+
+This action is used to get information about held messages.
+
+##### Input
+
+|Name|Type|Default|Required|Description|Enum|Example|
+|----|----|-------|--------|-----------|----|-------|
+|admin|boolean|False|False|Level of results to return|None|False|
+|end_date|string|None|False|The date and time of the latest message to return, in the following format, 2011-12-03T10:15:30+0000|None|2011-12-03T10:15:30+0000|
+|filter_by|[]filter_by|None|False|Filter options to narrow results|None|2011-12-03T10:15:30+0000|
+|search_by|search_by|None|False|Object data used to filter results|None|None|
+|start_date|string|None|False|The date and time of the earliest message to return, in the following format, 2011-12-03T10:15:30+0000|None|2011-12-03T10:15:30+0000|
+
+Example input:
+
+```
+```
+
+##### Output
+
+|Name|Type|Required|Description|
+|----|----|--------|-----------|
+|held_emails|[]held_emails|True|An array of held messages|
+
+Example output:
+
+```
+
+```
+
+#### File Upload
+
+This action is used to file Upload.
+
+##### Input
+
+|Name|Type|Default|Required|Description|Enum|Example|
+|----|----|-------|--------|-----------|----|-------|
+|file|file|None|True|The file to upload|None|{"filename": "file.txt", "content": "UmFwaWQ3IEluc2lnaHRDb25uZWN0Cg=="}|
+
+Example input:
+
+```
+```
+
+##### Output
+
+|Name|Type|Required|Description|
+|----|----|--------|-----------|
+|id|string|False|The Mimecast ID of the file|
+
+Example output:
+
+```
+
+```
+
+#### Hold Release
+
+This action is used to release a currently held message.
+
+##### Input
+
+|Name|Type|Default|Required|Description|Enum|Example|
+|----|----|-------|--------|-----------|----|-------|
+|end_date|string|None|False|The most recent date of messages to remediate. Default value is the end of the current day|None|2015-11-16T14:49:18+0000|
+|hashOrMessageId|string|None|True|The file hash or messageId value|None|2015-11-16T14:49:18+0000|
+|reason|string|None|True|The reason for creating the remediation incident|None|2015-11-16T14:49:18+0000|
+|search_by|string|hash|False|The message component in which to search by. When using messageId, the "<" ">" delimiters are required|['hash', 'messageId']|hash|
+|start_date|string|None|False|The earliest date of messages to remediate. Default value is one month back|None|2015-11-16T14:49:18+0000|
+
+Example input:
+
+```
+```
+
+##### Output
+
+|Name|Type|Required|Description|
+|----|----|--------|-----------|
+|data|incident|True|Incident information|
+
+Example output:
+
+```
+```
+
 #### Create Managed URL
 
 This action is used to create a managed URL.
@@ -617,6 +966,7 @@ Most common cloud [URLs](https://www.mimecast.com/tech-connect/documentation/api
 
 # Version History
 
+* 4.2.0 - New action Get Hold Message List | New action Get Message Hold Summary List | New action Reject Message | New action Release Message | New action Create Remediation Incident | New action Get Remediation Incident | New action Search File Hash | New action Get Threat Intel Feed | New action Message Finder Search | New action Get Message Info | New action File Upload | New action Send Email
 * 4.1.0 - Update Get TTP URL Logs action to use pagination
 * 4.0.1 - Add example inputs
 * 4.0.0 - Update Get TTP URL Logs to allow for better URL filtering

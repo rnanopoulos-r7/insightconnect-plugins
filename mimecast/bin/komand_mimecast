@@ -25,19 +25,43 @@ class ICONMimecast(komand.Plugin):
 
         self.add_action(actions.CreateManagedUrl())
 
+        self.add_action(actions.CreateRemediationIncident())
+
         self.add_action(actions.DecodeUrl())
 
         self.add_action(actions.DeleteGroupMember())
 
         self.add_action(actions.DeleteManagedUrl())
 
+        self.add_action(actions.FileUpload())
+
         self.add_action(actions.FindGroups())
+
+        self.add_action(actions.GetHoldMessageList())
 
         self.add_action(actions.GetManagedUrl())
 
+        self.add_action(actions.GetMessageHoldSummaryList())
+
+        self.add_action(actions.GetMessageInfo())
+
+        self.add_action(actions.GetRemediationIncident())
+
+        self.add_action(actions.GetThreatIntelFeed())
+
         self.add_action(actions.GetTtpUrlLogs())
 
+        self.add_action(actions.MessageFinderSearch())
+
         self.add_action(actions.PermitOrBlockSender())
+
+        self.add_action(actions.RejectMessage())
+
+        self.add_action(actions.ReleaseMessage())
+
+        self.add_action(actions.SearchFileHash())
+
+        self.add_action(actions.SendEmail())
 
 
 def main():

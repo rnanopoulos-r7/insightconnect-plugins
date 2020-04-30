@@ -34,7 +34,8 @@ class MimecastRequests:
             self.logger = LogHelper().logger
 
     def mimecast_post(self, url: str, uri: str, access_key: str,
-                      secret_key: str, app_id: str, app_key: str, data: dict, meta: dict = None) -> dict:
+                      secret_key: str, app_id: str, app_key: str,
+                      data: dict, meta: dict = None, file_bytes: bytes = None) -> dict:
         """
         This method will send a properly formatted post request to the Mimecast server
         :param url: The server URL
@@ -45,6 +46,7 @@ class MimecastRequests:
         :param app_key: The key associated with the app_id
         :param data: The payload for the api call
         :param meta: The meta information for request
+        :param file_bytes: File to send
         :return:
         """
         # Set full URL
@@ -73,12 +75,23 @@ class MimecastRequests:
             'Authorization': 'MC ' + access_key + ':' + sig,
             'x-mc-app-id': app_id,
             'x-mc-date': hdr_date,
-            'x-mc-req-id': request_id,
-            'Content-Type': 'application/json'
+            'x-mc-req-id': request_id
         }
 
+        if file_bytes is None:
+            headers["Content-Type"] = "application/json"
+        else:
+            headers["Content-Type"] = 'application/octet-stream'
+            headers["x-mc-arg"] = str({
+                'data': [
+                    data
+                ]
+            })
+
         # build payload data
-        if data is not None:
+        if file_bytes is not None:
+            payload = file_bytes
+        elif data is not None:
             payload = {
                 'data': [
                     data
@@ -93,8 +106,13 @@ class MimecastRequests:
         if meta is not None:
             payload['meta'] = meta
 
+        if file_bytes is not None:
+            data = payload
+        else:
+            data = str(payload)
+
         try:
-            request = requests.post(url=url, headers=headers, data=str(payload))
+            request = requests.post(url=url, headers=headers, data=data)
         except requests.exceptions.RequestException as e:
             raise PluginException(data=e)
 
@@ -104,6 +122,9 @@ class MimecastRequests:
             self.logger.error(request.text)
             raise PluginException(cause='Unknown error.',
                                   assistance='The Mimecast server did not respond correctly. Response not in JSON format. Response in logs.')
+
+        if 'id' in response and file_bytes is not None:
+            return response
 
         try:
             # Check for expired key
