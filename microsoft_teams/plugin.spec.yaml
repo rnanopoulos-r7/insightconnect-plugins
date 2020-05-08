@@ -171,21 +171,25 @@ connection:
     description: Application (client) ID
     type: string
     required: true
+    example: "xxxxxxx-xxxxxx-xxxxx-xxxx"
   directory_id:
     title: Directory ID
     description: Directory (tenant) ID
     type: string
     required: true
+    example: "xxxx-xxxx-xxxx-xxxx-xxx"
   application_secret:
     title: Application Secret
     description: Application secret
     type: credential_secret_key
     required: true
+    example: '{"secret_key": "xxxxxxx"}'
   username_password:
     type: credential_username_password
     title: "Credentials"
     description: "Username and password"
     required: true
+    example: '{"username": "user@example.com", "password": "password"}'
 
 triggers:
   new_message_received:
