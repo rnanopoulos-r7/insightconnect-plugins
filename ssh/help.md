@@ -101,7 +101,13 @@ _This plugin does not contain any triggers._
 
 ### Custom Output Types
 
-_This plugin does not contain any custom output types._
+#### results
+
+|Name|Type|Required|Description|
+|----|----|--------|-----------|
+|stderr|string|True|Stderr|
+|stdout|string|True|Stdout|
+|all_output|string|True|All output|
 
 ## Troubleshooting
 
@@ -128,13 +134,3 @@ _This plugin does not contain any troubleshooting information._
 * [Secure Shell](https://en.wikipedia.org/wiki/Secure_Shell)
 * [OpenSSH](https://www.openssh.com/)
 * [paramiko](http://www.paramiko.org/)
-
-## Custom Output Types
-
-### results
-
-|Name|Type|Required|Description|
-|----|----|--------|-----------|
-|stderr|string|True|Stderr|
-|stdout|string|True|Stdout|
-|all_output|string|True|All output|
