@@ -25,6 +25,7 @@ class Forward(insightconnect_plugin_runtime.Action):
             ans = ['Not found']
         else:
             # Grab address
+            # test comment
             if params[Input.QUERY] == "SOA":
                 domain = util.safe_parse(re.search(r'SOA\t(\S+)', answer_section))
                 if util.not_empty(domain):
